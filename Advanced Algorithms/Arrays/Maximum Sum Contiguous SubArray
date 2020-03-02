@@ -1,0 +1,16 @@
+class Solution:
+    def maxSubArray(self, A):
+        # write your method here
+        sum=A[0]
+        maximum=A[0]
+        l=len(A)
+        for i in range(1,l):
+            if sum<0:
+                sum=A[i]
+            else:
+                sum+=A[i]
+            if sum>maximum:
+                maximum=sum
+        if maximum<max(A):
+            return max(A)
+        return maximum
