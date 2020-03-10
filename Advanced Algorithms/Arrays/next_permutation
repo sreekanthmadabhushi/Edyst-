@@ -1,0 +1,29 @@
+class Solution:
+    def nextPermutation(self, a):
+        for i in range(len(a)-1,0,-1):
+            if a[i]>a[i-1]:
+                j=i+1
+                if j==len(a):
+                    a[i],a[i-1]=a[i-1],a[i]
+                else:
+                    min=j
+                    while(j<len(a)):
+                        if a[i-1]<a[j]:
+                            if a[min]>=a[j]:
+                                min=j
+                            else:
+                                j-=1
+                                break
+                        j+=1
+                    if a[i-1]>a[min]:
+                        x=a.pop(i-1)
+                        a.append(x)
+                    else:
+                        a[i-1],a[min]=a[min],a[i-1]
+                        x=len(a)
+                    a.extend(sorted(a[i:]))
+                    del a[i:x]
+                break
+        else:
+            a.sort()
+        return a
